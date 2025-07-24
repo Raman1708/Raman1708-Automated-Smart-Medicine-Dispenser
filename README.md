@@ -1,77 +1,128 @@
-# Raman1708-Automated-Smart-Medicine-Dispenser
+Automated Smart Medicine Dispenser
+Overview
+The Automated Smart Medicine Dispenser is an Arduino-based device designed to simplify and ensure accurate medication management, especially for elderly users or those memory challenges. It features individually controlled compartments, visual and audible reminders, programmable schedules, and environmental monitoring to maintain optimal storage conditions.
 
-MOTIVATION
+Table of Contents
+Motivation
 
-This project idea is an innovative approach to solving real-life problems. As we all know product development is a must in today’s world in order to keep up with the fast-paced growth and the challenges that arise during the progress. One of the common problems faced by old people in India and also all over the world is health issues. There are multiple medical prescriptions which creates a state of confusion and sort of stress development for them to follow the schedule from time to time without any hindrance. The main problem that arises in this is that the number of medicines is usually more than one or two and often the timely intake is not followed. Our project is oriented toward this issue and aims to solve the problem of overcoming the hardships faced by the aged.
+Features
 
+Bill of Materials (BOM)
 
+Hardware Specifications
 
+Mechanical Assembly
 
-LIST OF ITEMS AND THEIR SPECIFICATIONS
+Circuit Diagram
 
-Arduino Uno R3 Development Board with ATMEGA328 with cable.
-16*2 Character LCD Display
-12V DC Piezo Electric Buzzer
-Real-Time Clock Module
-Two Switches (Black Reset and Green Reset)
-15A Red/Black Rocker Switch
-LED light (Tri-colour, Red)
-Plastic Gears Kit
-Rechargeable Batteries (10 with 3.7V each)
-1*Potentiometer
-1*Breadboard
-4*Servo Motor (complete rotation)
+Software
 
-CHALLENGES
+Libraries
 
-Setup Box: The selection of the box which will be our core setup of the project was not an easy task. Finding the correct dimensioning and proper division of sections was a challenge.
-Material: The covering of the sections of our setup box required a flexible material. The challenge was to find the material having the proper thickness.
-Assembly: The setup of individual components in the setup box was a challenge as proper size and space were not peculiar with respect to each component. The adjustment was required to assemble the project.
-Mechanism: The mechanism for opening the divided sections created an issue. The challenge was the proper and smooth opening which wasn’t the case.
-Debugging: The Arduino code showed a compilation error. Identifying the error and removing the bug was a challenge.
-Power: The challenge was to find the accurate power required to function the components in the project. The power selection was important as more power could have damaged the instruments and less power would not work.
+Arduino Sketch
 
+Setup & Calibration
 
+Operation
 
-WORK METHODOLOGY
+Challenges & Solutions
 
-This medical box is useful in day-to-day life for those who are not able to remember when to take their medicines. Here is the working of it:
+Learnings
 
-Organized Compartments: The dispenser features several individual sections, each designated for a specific medication.  These compartments are hidden behind a layer of cardboard covers.
+Future Development
 
-Precise Delivery:  Attached to each compartment cover is a tiny motor called a servo motor.  Controlled by a small computer (Arduino), these motors precisely open and close the designated cover when it's time for your medication.
-Internal Clock Keeper:  A built-in timekeeping module ensures the dispenser operates on a precise schedule.  You program the dispense times for each medication, and the dispenser takes care of the rest.
-Visual and Audible Reminders: Don't miss a dose! A bright LED light illuminates when it's medication time. Additionally, a beeper sounds an alert, further ensuring you won't forget your important medication.
-Rechargeable Power:  The dispenser is powered by rechargeable batteries, eliminating the need for frequent battery changes. Simply recharge the batteries periodically for continued operation.
+License
 
-Customization: The design is adaptable to fit your needs. The number of medication sections can be adjusted, and the dispense schedule can be programmed for each medication individually.
+Motivation
+Managing multiple medications on strict schedules poses challenges and stress—especially for seniors. Missed or incorrect doses can lead to health complications. This project automates dispensing, reduces human error, and promotes adherence, offering peace of mind to users and caregivers alike.
 
-Temperature Module: Considering the regular indications on medications regarding storing in cool and dry place under appropriate conditions, we have installed temperature module too for keeping the specific medicines fine.
+Features
+Programmable Dispense Schedule
 
+Individual Compartments with servo-controlled lids
 
-CONCLUSION OF PROJECT
+Real-Time Clock (RTC) for precise timing
 
-This automated dispenser offers a convenient and reliable solution for managing medication routines. It promotes medication adherence, provides peace of mind, and simplifies medication management, especially for those with busy schedules or memory problems.
+Visual (LED) and Audible (Buzzer) reminders
 
-Improved Medication: Studies show that medication dispensers can significantly increase medication adherence, which can lead to better health outcomes. By ensuring timely and accurate intake of medicines, the dispenser helps avoid missed medications and potential complications.
+Temperature Monitoring to ensure proper storage
 
+Rechargeable Battery Power for portability
 
-Reduced Risk of Errors: Manual medication management can be prone to errors, especially for individuals with multiple medications or complex schedules. This dispenser eliminates the risk of accidentally taking the wrong medication or dosage.
+Modular Design—adjustable number of compartments
 
+Bill of Materials (BOM)
+Item	Quantity	Notes
+Arduino Uno R3 (ATmega328)	1	USB cable included
+16×2 Character LCD Display	1	With I²C adapter (optional)
+Real-Time Clock Module (DS3231)	1	
+SG90 Servo Motors (180° rotation)	4	One per compartment
+12V DC Piezo Electric Buzzer	1	
+Tri-color LED	1	For visual alerts
+Rechargeable Li-ion Battery (3.7 V)	10	In series for 37 V total
+15 A Rocker Switch (Red/Black)	1	Main power on/off
+Pushbutton Switches (Reset/Alarm Silence)	2	Black & Green
+Adjustable Potentiometer	1	LCD contrast
+Plastic Gears Kit	1	For lid-opening mechanism
+Breadboard & Jumper Wires	1 set	
+Temperature Sensor Module (e.g., DHT11)	1	
+Enclosure Box with Dividers	1	Custom dimensions
+Hardware Specifications
+Microcontroller: ATmega328 @ 16 MHz, 5 V logic
 
-Enhanced Caregiver Support: For caregivers managing medications for loved ones, this dispenser can provide valuable assistance. It reduces the burden of remembering and administering medications, offering peace of mind and increased confidence in caregiving routines.
+RTC Accuracy: ±2 ppm (DS3231)
 
+Servo Torque: ~1.8 kg·cm
 
-Potential Cost Savings: Improved medication adherence can lead to reduced healthcare costs because of with missed doses or medication complications. 
+Buzzer Voltage: 12 V DC
 
-Future Development: Having scope of development further in the future with some of the proposals like integrating and coordinating it with a software application for smooth functioning.
+Battery Pack: 37 V nominal (10×3.7 V), capacity as per runtime requirement
 
-LEARNINGS FROM PROJECT
+Operating Temperature Range: 0 °C – 50 °C
 
-Programming: We learned how to write code for the Arduino board and how to use libraries to simplify the process.
-Data Visualization: We learned how to visualize data on an LCD screen.
-Hardware Interfacing: We learned how to interface different sensors with the Arduino board and how to read data from them.Cost-Effective Solutions: We learned how to build cost-effective solutions using readily available components.
-Collaboration and Teamwork: We learned how to collaborate with others to build a complex system.
+Mechanical Assembly
+Enclosure Preparation
 
+Divide the box into compartments sized for daily doses.
 
+Install servo motors beneath each lid section.
 
+Mounting Components
+
+Fix Arduino, RTC, and LCD onto the rear panel.
+
+Secure battery pack and rocker switch inside.
+
+Wiring Harness
+
+Route servo signal wires and power lines neatly.
+
+Connect temperature sensor to an analog input.
+
+Cover Layer
+
+Affix thin cardboard or acrylic lids onto servo output horns via gears.
+
+Circuit Diagram
+text
+[Arduino Uno]
+  ├─ SDA, SCL → RTC Module (DS3231)
+  ├─ Digital Pins → Servos (pins 3, 5, 6, 9)
+  ├─ Digital Pin 10 → Buzzer (via transistor driver)
+  ├─ Digital Pin 11 → Tri-color LED (via resistors)
+  ├─ Analog A0 → Temperature Sensor (DHT11)
+  ├─ Digital Pins → Pushbuttons (Reset, Silence)
+  └─ 5 V, GND → LCD Display (via I²C or parallel)
+ 
+Battery Pack → Rocker Switch → VIN on Arduino & 12 V rail for buzzer
+Software
+Libraries
+Wire.h (I²C communication)
+
+RTClib.h (RTC DS3231)
+
+LiquidCrystal.h or LiquidCrystal_I2C.h
+
+Servo.h
+
+DHT.h (temperature sensor)
