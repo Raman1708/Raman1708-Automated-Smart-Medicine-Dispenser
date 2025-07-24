@@ -1,128 +1,60 @@
-Automated Smart Medicine Dispenser
-Overview
+# Automated Smart Medicine Dispenser
+## Overview
 The Automated Smart Medicine Dispenser is an Arduino-based device designed to simplify and ensure accurate medication management, especially for elderly users or those memory challenges. It features individually controlled compartments, visual and audible reminders, programmable schedules, and environmental monitoring to maintain optimal storage conditions.
 
-Table of Contents
-Motivation
+## Motivation
 
-Features
-
-Bill of Materials (BOM)
-
-Hardware Specifications
-
-Mechanical Assembly
-
-Circuit Diagram
-
-Software
-
-Libraries
-
-Arduino Sketch
-
-Setup & Calibration
-
-Operation
-
-Challenges & Solutions
-
-Learnings
-
-Future Development
-
-License
-
-Motivation
 Managing multiple medications on strict schedules poses challenges and stress—especially for seniors. Missed or incorrect doses can lead to health complications. This project automates dispensing, reduces human error, and promotes adherence, offering peace of mind to users and caregivers alike.
 
-Features
-Programmable Dispense Schedule
+##Features
 
-Individual Compartments with servo-controlled lids
+- Programmable Dispense Schedule
 
-Real-Time Clock (RTC) for precise timing
+- ndividual Compartments with servo-controlled lids
 
-Visual (LED) and Audible (Buzzer) reminders
+- Real-Time Clock (RTC) for precise timing
 
-Temperature Monitoring to ensure proper storage
+- Visual (LED) and Audible (Buzzer) reminders
 
-Rechargeable Battery Power for portability
+- Temperature Monitoring to ensure proper storage
 
-Modular Design—adjustable number of compartments
+- Rechargeable Battery Power for portability
 
-Bill of Materials (BOM)
-Item	Quantity	Notes
-Arduino Uno R3 (ATmega328)	1	USB cable included
-16×2 Character LCD Display	1	With I²C adapter (optional)
-Real-Time Clock Module (DS3231)	1	
-SG90 Servo Motors (180° rotation)	4	One per compartment
-12V DC Piezo Electric Buzzer	1	
-Tri-color LED	1	For visual alerts
-Rechargeable Li-ion Battery (3.7 V)	10	In series for 37 V total
-15 A Rocker Switch (Red/Black)	1	Main power on/off
-Pushbutton Switches (Reset/Alarm Silence)	2	Black & Green
-Adjustable Potentiometer	1	LCD contrast
-Plastic Gears Kit	1	For lid-opening mechanism
-Breadboard & Jumper Wires	1 set	
-Temperature Sensor Module (e.g., DHT11)	1	
-Enclosure Box with Dividers	1	Custom dimensions
-Hardware Specifications
-Microcontroller: ATmega328 @ 16 MHz, 5 V logic
+- Modular Design—adjustable number of compartments
 
-RTC Accuracy: ±2 ppm (DS3231)
+## Hardware Specifications
 
-Servo Torque: ~1.8 kg·cm
+- Microcontroller: ATmega328 @ 16 MHz, 5 V logic
 
-Buzzer Voltage: 12 V DC
+- RTC Accuracy: ±2 ppm (DS3231)
 
-Battery Pack: 37 V nominal (10×3.7 V), capacity as per runtime requirement
+- Servo Torque: ~1.8 kg·cm
 
-Operating Temperature Range: 0 °C – 50 °C
+- Buzzer Voltage: 12 V DC
 
-Mechanical Assembly
-Enclosure Preparation
+- Battery Pack: 37 V nominal (10×3.7 V), capacity as per runtime requirement
 
-Divide the box into compartments sized for daily doses.
+- Operating Temperature Range: 0 °C – 50 °C
 
-Install servo motors beneath each lid section.
+## Mechanical Assembly
 
-Mounting Components
+###1.Enclosure Preparation
+  - Divide the box into compartments sized for daily doses.
 
-Fix Arduino, RTC, and LCD onto the rear panel.
+  - Install servo motors beneath each lid section.
 
-Secure battery pack and rocker switch inside.
+###2.Mounting Components
 
-Wiring Harness
+  - Fix Arduino, RTC, and LCD onto the rear panel.
 
-Route servo signal wires and power lines neatly.
+  - Secure battery pack and rocker switch inside.
 
-Connect temperature sensor to an analog input.
+###3.Wiring Harness
 
-Cover Layer
+  - Route servo signal wires and power lines neatly.
 
-Affix thin cardboard or acrylic lids onto servo output horns via gears.
+  - Connect temperature sensor to an analog input.
 
-Circuit Diagram
-text
-[Arduino Uno]
-  ├─ SDA, SCL → RTC Module (DS3231)
-  ├─ Digital Pins → Servos (pins 3, 5, 6, 9)
-  ├─ Digital Pin 10 → Buzzer (via transistor driver)
-  ├─ Digital Pin 11 → Tri-color LED (via resistors)
-  ├─ Analog A0 → Temperature Sensor (DHT11)
-  ├─ Digital Pins → Pushbuttons (Reset, Silence)
-  └─ 5 V, GND → LCD Display (via I²C or parallel)
- 
-Battery Pack → Rocker Switch → VIN on Arduino & 12 V rail for buzzer
-Software
-Libraries
-Wire.h (I²C communication)
+###4.Cover Layer
 
-RTClib.h (RTC DS3231)
-
-LiquidCrystal.h or LiquidCrystal_I2C.h
-
-Servo.h
-
-DHT.h (temperature sensor)
+  -Affix thin cardboard or acrylic lids onto servo output horns via gears.
