@@ -10,7 +10,7 @@ Managing multiple medications on strict schedules poses challenges and stress—
 
 - Programmable Dispense Schedule
 
-- ndividual Compartments with servo-controlled lids
+- Individual Compartments with servo-controlled lids
 
 - Real-Time Clock (RTC) for precise timing
 
