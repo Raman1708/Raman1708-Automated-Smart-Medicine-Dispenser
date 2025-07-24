@@ -6,7 +6,7 @@ The Automated Smart Medicine Dispenser is an Arduino-based device designed to si
 
 Managing multiple medications on strict schedules poses challenges and stress—especially for seniors. Missed or incorrect doses can lead to health complications. This project automates dispensing, reduces human error, and promotes adherence, offering peace of mind to users and caregivers alike.
 
-##Features
+## Features
 
 - Programmable Dispense Schedule
 
@@ -38,23 +38,23 @@ Managing multiple medications on strict schedules poses challenges and stress—
 
 ## Mechanical Assembly
 
-###1.Enclosure Preparation
+### 1.Enclosure Preparation
   - Divide the box into compartments sized for daily doses.
 
   - Install servo motors beneath each lid section.
 
-###2.Mounting Components
+### 2.Mounting Components
 
   - Fix Arduino, RTC, and LCD onto the rear panel.
 
   - Secure battery pack and rocker switch inside.
 
-###3.Wiring Harness
+### 3.Wiring Harness
 
   - Route servo signal wires and power lines neatly.
 
   - Connect temperature sensor to an analog input.
 
-###4.Cover Layer
+### 4.Cover Layer
 
   -Affix thin cardboard or acrylic lids onto servo output horns via gears.
