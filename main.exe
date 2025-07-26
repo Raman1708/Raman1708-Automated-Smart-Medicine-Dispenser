@@ -1,0 +1,360 @@
+// include the library code:
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include <RTClib.h>
+#include <Servo.h>
+RTC_DS3231 rtc;
+char t[10];
+
+// initialize the library by associating any needed LCD interface pin
+// with the arduino pin number it is connected to
+// Define LCD pinout
+const int en = 2, rw = 1, rs = 0, d4 = 4, d5 = 5, d6 = 6, d7 = 7, bl = 3;
+
+// Define I2C Address - change if required
+const int i2c_addr = 0x27;
+const int Add_Button_Pin = 6;
+const int Change_Button_Pin = 7;
+int Add_Button_State = 0;    // Voilet
+int Change_Button_State = 0; // grey
+int Red_CBulb = 11;
+int Yellow_CBulb = 10;
+int Alarm_Bulb = 9;
+int Beeper_Pin = 12;
+int Med_Data[8] = {25, 25, 25, 25, 25, 25, 25, 25};
+
+LiquidCrystal_I2C lcd(i2c_addr, en, rw, rs, d4, d5, d6, d7, bl, POSITIVE);
+Servo myservo1;
+Servo myservo2;
+Servo myservo3;
+Servo myservo4;
+
+void setup()
+{
+  // set up the LCD's number of columns and rows:
+  lcd.begin(16, 2);
+  lcd.backlight();
+  Serial.begin(9600);
+  Wire.begin();
+  rtc.begin();
+
+  // For the buttons
+  pinMode(Add_Button_Pin, INPUT);
+  pinMode(Change_Button_Pin, INPUT);
+  pinMode(Yellow_CBulb, OUTPUT);
+  pinMode(Red_CBulb, OUTPUT);
+  pinMode(Alarm_Bulb, OUTPUT);
+  pinMode(Beeper_Pin, OUTPUT);
+
+  myservo1.attach(3);
+  myservo2.attach(4);
+  myservo3.attach(5);
+  myservo4.attach(13);
+}
+
+void loop()
+{
+
+  lcd.setCursor(0, 0);
+  DateTime now = rtc.now();
+  sprintf(t, "%02d:%02d:%02d ", now.hour(), now.minute(), now.second(), now.day(), now.month());
+  lcd.print(t + String(rtc.getTemperature()) + char(223));
+  lcd.setCursor(0, 1);
+  lcd.print("CLICK TO ADD!");
+
+  // Alarm Code
+  int i;
+  for (i = 1; i < 5; i++)
+  {
+    if (Med_Data[2 * i - 1] == now.hour())
+    {
+      Med_Data[2 * i - 1] = 25;
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Click Add to");
+      lcd.setCursor(0, 1);
+      lcd.print("Open the Box. ");
+      digitalWrite(Alarm_Bulb, HIGH);
+      beep();
+      digitalWrite(Alarm_Bulb, LOW);
+      lcd.setCursor(0, 0);
+      lcd.clear();
+      lcd.print("OPENING THE BOX");
+      lcd.setCursor(0, 1);
+      lcd.print("TAKE " + String(Med_Data[2 * (i - 1)]) + " TABLETS.");
+
+      lcd.clear();
+
+      // Box_Controller();
+      switch (i)
+      {
+      case 1:
+        myservo1.write(90);
+        Serial.println(String(i));
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("CLICK ADD");
+        lcd.setCursor(0, 1);
+        lcd.print("TO CLOSE");
+        while (digitalRead(Add_Button_Pin) != HIGH)
+        {
+        }
+        while (digitalRead(Add_Button_Pin) == HIGH)
+        {
+        }
+        myservo1.write(0);
+        delay(100);
+        break;
+      case 2:
+        myservo2.write(90);
+        Serial.println(String(i));
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("CLICK ADD");
+        lcd.setCursor(0, 1);
+        lcd.print("TO CLOSE");
+        while (digitalRead(Add_Button_Pin) != HIGH)
+        {
+        }
+        while (digitalRead(Add_Button_Pin) == HIGH)
+        {
+        }
+        myservo2.write(0);
+        delay(100);
+        break;
+      case 3:
+        myservo3.write(90);
+        Serial.println(String(i));
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("CLICK ADD");
+        lcd.setCursor(0, 1);
+        lcd.print("TO CLOSE");
+        while (digitalRead(Add_Button_Pin) != HIGH)
+        {
+        }
+        while (digitalRead(Add_Button_Pin) == HIGH)
+        {
+        }
+        myservo3.write(0);
+        delay(100);
+        break;
+      case 4:
+        myservo4.write(90);
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("CLICK ADD");
+        lcd.setCursor(0, 1);
+        lcd.print("TO CLOSE");
+        while (digitalRead(Add_Button_Pin) != HIGH)
+        {
+        }
+        while (digitalRead(Add_Button_Pin) == HIGH)
+        {
+        }
+        myservo4.write(0);
+        delay(100);
+        break;
+      }
+
+      lcd.clear();
+      Med_Data[2 * (i - 1)] = 0;
+    }
+  }
+
+  // Reading Button Output
+  Add_Button_State = digitalRead(Add_Button_Pin);
+  if (Add_Button_State == HIGH)
+  {
+    while (digitalRead(Add_Button_Pin))
+    {
+    }
+    digitalWrite(Yellow_CBulb, HIGH);
+    delay(400);
+    digitalWrite(Yellow_CBulb, LOW);
+    lcd.clear();
+    Add_Med();
+  }
+
+  // To See the Data
+  Change_Button_State = digitalRead(Change_Button_Pin);
+  if (Change_Button_State == HIGH)
+  {
+    while (digitalRead(Change_Button_Pin))
+    {
+    }
+    digitalWrite(Red_CBulb, HIGH);
+    delay(400);
+    digitalWrite(Red_CBulb, LOW);
+    lcd.clear();
+    See_Med();
+  }
+}
+
+void Add_Med()
+{
+  int box = 1;
+  int qty = 1;
+  int time = 0;
+
+  // Statement to print
+  char stat[30];
+
+  // For Selection of Box
+  while (1)
+  {
+    lcd.setCursor(0, 0);
+    lcd.print("ENTER THE BOX NO.-");
+    lcd.setCursor(0, 1);
+    lcd.print("BOX - " + String(box));
+    if (digitalRead(Change_Button_Pin) == HIGH)
+    {
+      box++;
+      if (box > 4)
+      {
+        box = 1;
+      }
+      while (digitalRead(Change_Button_Pin) == HIGH)
+      {
+      }
+    }
+    if (digitalRead(Add_Button_Pin) == HIGH)
+    {
+      digitalWrite(Alarm_Bulb, HIGH);
+      delay(400);
+      digitalWrite(Alarm_Bulb, LOW);
+      while (digitalRead(Add_Button_Pin) == HIGH)
+      {
+      }
+      lcd.clear();
+      break;
+    }
+  }
+
+  // For Selection of Qty
+  while (1)
+  {
+    lcd.setCursor(0, 0);
+    lcd.print("QTY OF MEDICINE-");
+    lcd.setCursor(0, 1);
+    lcd.print("QTY - " + String(qty));
+    if (digitalRead(Change_Button_Pin) == HIGH)
+    {
+      qty++;
+      if (qty > 5)
+      {
+        qty = 1;
+      }
+      while (digitalRead(Change_Button_Pin) == HIGH)
+      {
+      }
+    }
+    if (digitalRead(Add_Button_Pin) == HIGH)
+    {
+      digitalWrite(Alarm_Bulb, HIGH);
+      delay(400);
+      digitalWrite(Alarm_Bulb, LOW);
+      while (digitalRead(Add_Button_Pin) == HIGH)
+      {
+      }
+      lcd.clear();
+      Med_Data[2 * (box - 1)] = qty;
+      break;
+    }
+  }
+
+  // For Time Selection
+  // For Selection of Qty
+  while (1)
+  {
+    lcd.setCursor(0, 0);
+    lcd.print("ALARM TIME-");
+    lcd.setCursor(0, 1);
+    sprintf(stat, "TIME - %02d:00", time);
+    lcd.print(stat);
+    if (digitalRead(Change_Button_Pin) == HIGH)
+    {
+      time++;
+      if (time > 23)
+      {
+        time = 0;
+      }
+      while (digitalRead(Change_Button_Pin) == HIGH)
+      {
+      }
+    }
+    if (digitalRead(Add_Button_Pin) == HIGH)
+    {
+      digitalWrite(Alarm_Bulb, HIGH);
+      delay(400);
+      digitalWrite(Alarm_Bulb, LOW);
+      while (digitalRead(Add_Button_Pin) == HIGH)
+      {
+      }
+      lcd.clear();
+      Med_Data[2 * box - 1] = time;
+      break;
+    }
+  }
+}
+
+// TO See Medicine
+void See_Med()
+{
+  int i = 1;
+  char stat[30];
+  while (1)
+  {
+    if (Med_Data[2 * i - 1] == 25)
+    {
+      i++;
+      continue;
+    }
+    else
+    {
+      lcd.setCursor(0, 0);
+      lcd.print("Box-" + String(i) + " QTY : " + String(Med_Data[(i - 1) * 2]));
+      lcd.setCursor(0, 1);
+      sprintf(stat, "Time - %02d:00", Med_Data[2 * i - 1]);
+      lcd.print(stat);
+      if (digitalRead(Change_Button_Pin) == HIGH)
+      {
+        digitalWrite(Alarm_Bulb, HIGH);
+        delay(400);
+        digitalWrite(Alarm_Bulb, LOW);
+        while (digitalRead(Change_Button_Pin) == HIGH)
+        {
+        }
+        i++;
+      }
+      if (i > 4)
+      {
+        lcd.clear();
+        break;
+      }
+    }
+  }
+}
+
+// Beeper Function
+void beep()
+{
+  DateTime now = rtc.now();
+
+  while (1)
+  {
+    if (digitalRead(Add_Button_Pin) == HIGH)
+    {
+      while (digitalRead(Add_Button_Pin) == HIGH)
+      {
+      }
+      break;
+    }
+    digitalWrite(Beeper_Pin, HIGH);
+    if (now.minute() == 5)
+    {
+      break;
+    }
+  }
+  digitalWrite(Beeper_Pin, LOW);
+}
