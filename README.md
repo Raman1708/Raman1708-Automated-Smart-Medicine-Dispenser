@@ -58,3 +58,22 @@ Managing multiple medications on strict schedules poses challenges and stress—
 ### 4.Cover Layer
 
   -Affix thin cardboard or acrylic lids onto servo output horns via gears.
+
+## Conclusion of the project
+
+  -This automated dispenser offers a convenient and reliable solution for managing medication routines. It promotes medication adherence, provides peace of mind, and            simplifies medication management, especially for those with busy schedules or memory problems.
+
+  -Improved Medication: Studies show that medication dispensers can significantly increase medication adherence, which can lead to better health outcomes. By ensuring timely    and accurate intake of medicines, the dispenser helps avoid missed medications and potential complications.
+
+
+  -Reduced Risk of Errors: Manual medication management can be prone to errors, especially for individuals with multiple medications or complex schedules. This dispenser        eliminates the risk of accidentally taking the wrong medication or dosage.
+
+
+  -Enhanced Caregiver Support: For caregivers managing medications for loved ones, this dispenser can provide valuable assistance. It reduces the burden of remembering and      administering medications, offering peace of mind and increased confidence in caregiving routines.
+
+   
+  -Potential Cost Savings: Improved medication adherence can lead to reduced healthcare costs because of with missed doses or medication complications. 
+
+
+  -Future Development: Having scope of development further in the future with some of the proposals like integrating and coordinating it with a software application for         smooth functioning.
+
