@@ -65,15 +65,25 @@ Managing multiple medications on strict schedules poses challenges and stress—
 
   - Improved Medication: Studies show that medication dispensers can significantly increase medication adherence, which can lead to better health outcomes. By ensuring           timely and accurate intake of medicines, the dispenser helps avoid missed medications and potential complications.
 
-
   - Reduced Risk of Errors: Manual medication management can be prone to errors, especially for individuals with multiple medications or complex schedules. This dispenser        eliminates the risk of accidentally taking the wrong medication or dosage.
 
-
   - Enhanced Caregiver Support: For caregivers managing medications for loved ones, this dispenser can provide valuable assistance. It reduces the burden of remembering and      administering medications, offering peace of mind and increased confidence in caregiving routines.
-
-   
+ 
   - Potential Cost Savings: Improved medication adherence can lead to reduced healthcare costs because of with missed doses or medication complications. 
 
-
   - Future Development: Having scope of development further in the future with some of the proposals like integrating and coordinating it with a software application for         smooth functioning.
+
+
+## Learning from project
+
+  - Programming: We learned how to write code for the Arduino board and how to use libraries to simplify the process.
+    
+  - Data Visualization: We learned how to visualize data on an LCD screen.
+    
+  - Hardware Interfacing: We learned how to interface different sensors with the Arduino board and how to read data from them.
+  
+  - Cost-Effective Solutions: We learned how to build cost-effective solutions using readily available components.
+    
+  - Collaboration and Teamwork: We learned how to collaborate with others to build a complex system.
+
 
